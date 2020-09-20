@@ -1,0 +1,15 @@
+{
+	"name": "@xstate/component",
+	"version": "0.0.0",
+	"scripts": {
+		"dev": "vite",
+		"build": "vite build"
+	},
+	"dependencies": {
+		"lit-html": "^1.3.0",
+		"xstate": "^4.13.0"
+	},
+	"devDependencies": {
+		"vite": "^1.0.0-rc.1"
+	}
+}
