@@ -1,12 +1,15 @@
-import { bind } from './define-component'
+import { bind } from './component'
 import { html, render } from 'lit-html'
 
 const defineComponent = bind(html, render)
 
 defineComponent({
 	name: 'stop-light',
-	machine: {
-		initial: 'red',
+	inspect: true,
+	props: ['initial'],
+	emits: ['go', 'yield', 'stop'],
+	machine: (props, emit) => ({
+		initial: props.initial || 'green',
 		states: {
 			green: {
 				after: {
@@ -24,8 +27,8 @@ defineComponent({
 				},
 			},
 		},
-	},
-	render: (h, state) => h`
+	}),
+	render: (h, { state, props, send, emit }) => h`
 		<div class="light">
 			<div class="bulb ${state.matches('red') ? 'red' : ''}"></div>
 			<div class="bulb ${state.matches('yellow') ? 'yellow' : ''}"></div>
